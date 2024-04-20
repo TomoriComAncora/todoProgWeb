@@ -69,6 +69,16 @@ function App() {
     setEditar(undefined);
   };
 
+  const handleConcluir = (index: number) => {
+    const indexTarefa = tarefas.findIndex(
+      (tarefa) => tarefas.indexOf(tarefa) === index
+    );
+    if (indexTarefa !== -1) {
+      const tarefaConcluida = tarefas.filter((_, idx) => idx !== indexTarefa);
+      setTarefas(tarefaConcluida);
+    }
+  };
+
   return (
     <div className="app">
       <h1>ToDo's de Prog Web</h1>
