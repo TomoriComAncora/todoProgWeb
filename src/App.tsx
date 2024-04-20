@@ -1,4 +1,7 @@
 import {useState, useEffect} from 'react'
+import './styles.css'
+import { MdEdit } from "react-icons/md";
+import { FaCheckDouble } from "react-icons/fa";
 
 interface Tarefa {
   texto: string;
@@ -85,6 +88,7 @@ function App() {
       <form className="todo" onSubmit={handleAdicionar}>
         <input
           type="text"
+          placeholder='Sua tarefa...'
           value={tarefaInput}
           onChange={(e) => setTarefaInput(e.target.value)}
         />
@@ -100,8 +104,8 @@ function App() {
           <article className="tarefa" key={index}>
             <p>{tarefa.texto}</p>
             <div className="buttons">
-              <button onClick={() => handleEditar(tarefa)}>Editar</button>
-              <button onClick={() => handleConcluir(index)}>Concluir</button>
+              <button onClick={() => handleEditar(tarefa)}><MdEdit /></button>
+              <button onClick={() => handleConcluir(index)} id='concluir'><FaCheckDouble /></button>
             </div>
           </article>
         ))}
