@@ -19,6 +19,8 @@ function App() {
     }
   });
 
+  const [editar, setEditar] = useState<Tarefa | undefined>(undefined);
+
   useEffect(() => {
     const buscarItens = (): void => {
       const tarefasLocal = localStorage.getItem('@todos');
@@ -49,6 +51,22 @@ function App() {
 
     setTarefas((prevTarefas) => [...prevTarefas, { texto: tarefaInput }]);
     setTarefaInput('');
+  };
+
+  const handleEditar = (tarefa: Tarefa) => {
+    setTarefaInput(tarefa.texto);
+    setEditar(tarefa);
+  };
+
+  const handleAtualizarEdicao = () => {
+    const indexTarefa = tarefas.findIndex((tarefa) => tarefa === editar);
+    if (indexTarefa !== -1) {
+      const novasTarefas = [...tarefas];
+      novasTarefas.splice(indexTarefa, 1, { texto: tarefaInput });
+      setTarefas(novasTarefas);
+    }
+    setTarefaInput('');
+    setEditar(undefined);
   };
 
   return (
