@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
-import './styles.css'
-import { MdEdit } from "react-icons/md";
-import { FaCheckDouble } from "react-icons/fa";
+import TarefaForm from './TarefaForm/TarefaForm';
+import Tarefa from './Tarefa/Tarefa';
+import '../styles.css'
 
 interface Tarefa {
   texto: string;
@@ -84,33 +84,27 @@ function App() {
   return (
     <div className="app">
       <h1>ToDo's de Prog Web</h1>
-      <form className="todo" onSubmit={handleAdicionar}>
-        <input
-          type="text"
-          placeholder='Sua tarefa...'
-          value={tarefaInput}
-          onChange={(e) => setTarefaInput(e.target.value)}
-        />
-        {editar ? (
-          <button type="submit">Atualizar</button>
-        ) : (
-          <button type="submit">Adicionar</button>
-        )}
-      </form>
+      <TarefaForm
+        tarefaInput={tarefaInput}
+        setTarefaInput={setTarefaInput}
+        handleAdicionar={handleAdicionar}
+        editar={editar}
+      />
 
       <div className="lista">
         {tarefas.map((tarefa, index) => (
-          <article className="tarefa" key={index}>
-            <p>{tarefa.texto}</p>
-            <div className="buttons">
-              <button onClick={() => handleEditar(tarefa)}><MdEdit /></button>
-              <button onClick={() => handleConcluir(index)} id='concluir'><FaCheckDouble /></button>
-            </div>
-          </article>
+          <Tarefa
+            key={index}
+            tarefa={tarefa}
+            index={index}
+            handleEditar={handleEditar}
+            handleConcluir={handleConcluir}
+          />
         ))}
       </div>
     </div>
-  )
+  );
+  
 }
 
 export default App
