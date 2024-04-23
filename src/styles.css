@@ -54,6 +54,8 @@ body {
   border: #fb8500 solid 1px;
   border-radius: 0.2rem;
   overflow-y: scroll;
+  scrollbar-width: thin; /* Habilitar barra de rolagem fina (pode não funcionar em todos os navegadores) */
+  scrollbar-color: #ffb703 #f0f0f0;
 }
 
 .tarefa {
