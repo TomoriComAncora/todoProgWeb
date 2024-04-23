@@ -14,8 +14,6 @@ function App() {
       const localStorageData = localStorage.getItem('@todos');
       if (localStorageData) {
         return JSON.parse(localStorageData) || [];
-      } else {
-        return [];
       }
     } catch (err) {
       return [];
@@ -26,6 +24,7 @@ function App() {
 
   useEffect(() => {
     const buscarItens = (): void => {
+      localStorage.setItem('@todos', JSON.stringify(tarefas)); 
       const tarefasLocal = localStorage.getItem('@todos');
 
       if (tarefasLocal) {
