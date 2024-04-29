@@ -11,13 +11,15 @@ function App() {
   const [tarefaInput, setTarefaInput] = useState<string>('');
   const [tarefas, setTarefas] = useState<Tarefa[]>(() => {
     try {
+      
       const localStorageData = localStorage.getItem('@todos');
       if (localStorageData) {
         return JSON.parse(localStorageData) || [];
       }
     } catch (err) {
-      return [];
+      console.log('Erro ao localizar localStorage: ' + err);
     }
+    return [];
   });
 
   const [editar, setEditar] = useState<Tarefa | undefined>(undefined);
